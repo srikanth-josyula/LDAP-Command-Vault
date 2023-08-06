@@ -1,6 +1,7 @@
 #!/bin/bash
 # LDAP Search Example with Filters
 # Demonstrates using the ldapsearch command with filters for specific searches.
+# This script demonstrates how to perform an LDAP search using filters based on the provided connection details. It searches for entries with the objectClass=inetOrgPerson filter and retrieves the specified attributes (cn, uid, and homeDirectory). The provided sample output showcases the results of the LDAP search.
 
 # Connection Details
 HOST="ldap.forumsys.com"
