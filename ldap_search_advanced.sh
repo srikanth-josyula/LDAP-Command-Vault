@@ -6,17 +6,22 @@
 #This script includes comments explaining the purpose of the script and demonstrates how to perform an LDAP search with advanced options. The provided example showcases the usage of the cn:caseExactMatch:=john filter to search for entries with a case-sensitive exact match of "john" in the cn attribute.
 
 # Connection Details
-HOST="ldap.forumsys.com"
-PORT=389
-BIND_DN="cn=read-only-admin,dc=example,dc=com"
-ADMIN_PASSWORD="password"
+HOSTNAME="ldap.forumsys.com"
+HOSTPORT=389
+BIND_DN="cn=read-only-admin"
+BIND_PASSWORD="password"
 BASE_DN="dc=example,dc=com"
 
-# Search with Advanced Options
-ADVANCED_FILTER="cn:caseExactMatch:=john"
+# Search with AND Operator
+SEARCH_FILTER="(objectclass=*)"
+ATTRIBUTES="dn cn sAMAccountName"
 
-# Running the ldapsearch command with advanced options
-ldapsearch -x -h $HOST -p $PORT -D "$BIND_DN" -w "$ADMIN_PASSWORD" -b "$BASE_DN" "$ADVANCED_FILTER"
+# Search with AND Operator
+ADVANCED_FILTER="sAMAccountName=john"
+
+# Running the ldapsearch command with admin credentials
+echo ldapsearch -x -h $HOSTNAME -p $HOSTPORT -D "$BIND_DN" -w "$BIND_PASSWORD" -b "$BASE_DN" $ADVANCED_FILTER $ATTRIBUTES
+ldapsearch -x -h $HOSTNAME -p $HOSTPORT -D "$BIND_DN" -w "$BIND_PASSWORD" -b "$BASE_DN" $ADVANCED_FILTER $ATTRIBUTES
 
 <<OUTPUT
 Sample Output:
@@ -38,9 +43,5 @@ result: 0 Success
 
 dn: uid=john,dc=example,dc=com
 cn: John Doe
-uid: john
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-objectClass: top
+sAMAccountName: john
 OUTPUT
