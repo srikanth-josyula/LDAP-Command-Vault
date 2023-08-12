@@ -14,9 +14,7 @@ SEARCH_FILTER="(objectclass=*)"
 ATTRIBUTES="cn sAMAccountName"
 
 # Running the ldapsearch command with admin credentials
-# The following command searches for entries in the specified base DN with the objectclass=* filter.
 echo ldapsearch -x -h $HOSTNAME -p $HOSTPORT -D "$BIND_DN" -w "$BIND_PASSWORD" -b "$BASE_DN" "$SEARCH_FILTER" $ATTRIBUTES
-
 ldapsearch -x -h $HOSTNAME -p $HOSTPORT -D "$BIND_DN" -w "$BIND_PASSWORD" -b "$BASE_DN" "$SEARCH_FILTER" $ATTRIBUTES
 
 <<EOF
