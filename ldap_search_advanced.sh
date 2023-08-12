@@ -3,7 +3,8 @@
 # LDAP Search with Advanced Options
 # Demonstrates using advanced options for custom LDAP searches.
 
-#This script includes comments explaining the purpose of the script and demonstrates how to perform an LDAP search with advanced options. The provided example showcases the usage of the cn:caseExactMatch:=john filter to search for entries with a case-sensitive exact match of "john" in the cn attribute.
+#This script includes comments explaining the purpose of the script and demonstrates how to perform an LDAP search with advanced options. 
+#The provided example showcases the usage of the cn:caseExactMatch:=john filter to search for entries with a case-sensitive exact match of "john" in the cn attribute.
 
 # Connection Details
 HOSTNAME="ldap.forumsys.com"
@@ -17,7 +18,7 @@ SEARCH_FILTER="(objectclass=*)"
 ATTRIBUTES="dn cn sAMAccountName"
 
 # Search with AND Operator
-ADVANCED_FILTER="sAMAccountName=john"
+ADVANCED_FILTER="sAMAccountName:caseExactMatch:=john"
 
 # Running the ldapsearch command with admin credentials
 echo ldapsearch -x -h $HOSTNAME -p $HOSTPORT -D "$BIND_DN" -w "$BIND_PASSWORD" -b "$BASE_DN" $ADVANCED_FILTER $ATTRIBUTES
