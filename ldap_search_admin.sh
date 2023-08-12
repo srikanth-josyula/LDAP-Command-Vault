@@ -3,16 +3,21 @@
 # Demonstrates using the ldapsearch command with admin credentials for additional information.
 
 # Connection Details
-HOST="ldap.forumsys.com"
-PORT=389
-BIND_DN="cn=read-only-admin,dc=example,dc=com"
-ADMIN_PASSWORD="password"
+HOSTNAME="ldap.forumsys.com"
+HOSTPORT=389
+BIND_DN="cn=read-only-admin"
+BIND_PASSWORD="password"
 BASE_DN="dc=example,dc=com"
+
+# Search with AND Operator
+SEARCH_FILTER="(objectclass=*)"
+ATTRIBUTES="cn sAMAccountName"
 
 # Running the ldapsearch command with admin credentials
 # The following command searches for entries in the specified base DN with the objectclass=* filter.
-# It retrieves the common name (cn) and user ID (uid) attributes.
-ldapsearch -x -h $HOST -p $PORT -D "$BIND_DN" -w "$ADMIN_PASSWORD" -b "$BASE_DN" "(objectclass=*)" cn uid
+echo ldapsearch -x -h $HOSTNAME -p $HOSTPORT -D $BIND_DN -w $BIND_PASSWORD -b $BASE_DN $SEARCH_FILTER $ATTRIBUTES
+
+ldapsearch -x -h $HOSTNAME -p $HOSTPORT -D $BIND_DN -w $BIND_PASSWORD -b $BASE_DN $SEARCH_FILTER $ATTRIBUTES
 
 <<EOF
 Sample Output:
@@ -20,9 +25,9 @@ Sample Output:
 # extended LDIF
 #
 # LDAPv3
-# base <dc=example,dc=com> with scope subtree
+# base <DC=example,DC=com> with scope subtree
 # filter: (objectclass=*)
-# requesting: cn uid
+# requesting: cn sAMAccountName
 #
 
 # search result
@@ -34,33 +39,18 @@ result: 0 Success
 
 dn: uid=pasteur,dc=example,dc=com
 cn: Louis Pasteur
-uid: pasteur
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-objectClass: top
+sAMAccountName: pasteur
 
 dn: uid=nobel,dc=example,dc=com
 cn: Alfred Nobel
-uid: nobel
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-objectClass: top
+sAMAccountName: nobel
 
 dn: uid=curie,dc=example,dc=com
 cn: Marie Curie
-uid: curie
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-objectClass: top
+sAMAccountName: curie
 
 dn: uid=boyle,dc=example,dc=com
 cn: Robert Boyle
-uid: boyle
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-objectClass: top
+sAMAccountName: boyle
+
 EOF
