@@ -5,10 +5,10 @@
 #This script includes comments explaining the purpose of the script and demonstrates how to perform an LDAP search within a specific subtree of the directory using the -b option. The provided example showcases searching for entries with objectClass=person within the "ou=Users,dc=example,dc=com" search base and retrieving the specified attributes. I
 
 # Connection Details
-HOST="ldap.forumsys.com"
-PORT=389
-BIND_DN="cn=read-only-admin,dc=example,dc=com"
-ADMIN_PASSWORD="password"
+HOSTNAME="ldap.forumsys.com"
+HOSTPORT=389
+BIND_DN="cn=read-only-admin"
+BIND_PASSWORD="password"
 
 # Search with Limiting Search Scope
 SEARCH_BASE="ou=Users,dc=example,dc=com"
