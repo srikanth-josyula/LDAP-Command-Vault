@@ -7,15 +7,15 @@ HOSTNAME="ldap.forumsys.com"
 HOSTPORT=389
 BIND_DN="cn=read-only-admin"
 BIND_PASSWORD="password"
-BASE_DN="dc=example,dc=com"
 
 # Search with AND Operator
+SEARCH_BASE_DN="dc=example,dc=com"
 SEARCH_FILTER="(objectclass=*)"
 ATTRIBUTES="cn sAMAccountName"
 
 # Running the ldapsearch command with admin credentials
-echo ldapsearch -x -h $HOSTNAME -p $HOSTPORT -D "$BIND_DN" -w "$BIND_PASSWORD" -b "$BASE_DN" "$SEARCH_FILTER" $ATTRIBUTES
-ldapsearch -x -h $HOSTNAME -p $HOSTPORT -D "$BIND_DN" -w "$BIND_PASSWORD" -b "$BASE_DN" "$SEARCH_FILTER" $ATTRIBUTES
+echo ldapsearch -x -h $HOSTNAME -p $HOSTPORT -D "$BIND_DN" -w "$BIND_PASSWORD" -b "$SEARCH_BASE_DN" "$SEARCH_FILTER" $ATTRIBUTES
+ldapsearch -x -h $HOSTNAME -p $HOSTPORT -D "$BIND_DN" -w "$BIND_PASSWORD" -b "$SEARCH_BASE_DN" "$SEARCH_FILTER" $ATTRIBUTES
 
 <<EOF
 Sample Output:
